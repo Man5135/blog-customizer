@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import clsx from 'clsx';
+import { Text } from 'src/ui/text';
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 import { Select } from 'src/ui/select';
@@ -41,6 +42,7 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 
 	const handleReset = () => {
 		setFormState(defaultArticleState);
+		onApply(defaultArticleState);
 	};
 
 	const updateFormState = (key: keyof ArticleStateType, value: any) => {
@@ -62,7 +64,9 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 					[styles.container_open]: isMenuOpen,
 				})}>
 				<form className={styles.form} onSubmit={handleFormSubmit}>
-					<h1 className={styles.title}>Задайте параметры</h1>
+					<Text as='h2' size={31} weight={800} uppercase>
+						Задайте параметры
+					</Text>
 					<Select
 						selected={formState.fontFamilyOption}
 						options={fontFamilyOptions}
